@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity
+@Entity //this annotation used to specify that the class is an entity and is mapped to a database table.
 public class Blog {
-    @Id
+    @Id //this annotation used to specify the primary key of an entity(Table).
     private int id = 1;
     private String title = "Spring Boot";
     private String content = "Spring Boot is a powerful framework for building web applications.";
