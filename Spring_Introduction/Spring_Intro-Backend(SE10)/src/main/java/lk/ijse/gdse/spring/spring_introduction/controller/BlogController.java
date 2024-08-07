@@ -38,6 +38,7 @@ public class BlogController {
     // ** Save data to the database
     @PostMapping("/savePost")
     public String savePost(@RequestBody Blog blog){
+        //RequestBody annotation is used to bind the HTTP request/response body with a domain object in method parameter or return type.
         blogRepository.save(blog);
         return "Blog saved successfully!";
     }
@@ -49,5 +50,20 @@ public class BlogController {
         return blogRepository.findAll();
     }
 
+    // ** Update data from the database
+    @PutMapping("/updatePost")
+    public String updatePost(@RequestBody Blog blog){  //http://localhost:8080/blog/updatePost
+        //RequestBody annotation is used to bind the HTTP request/response body with a domain object in method parameter or return type.
+        blogRepository.save(blog);
+        return "Blog updated successfully!";
+    }
+
+    // ** Delete data from the database using the id
+    @DeleteMapping("/deletePost/{id}")
+    public String deletePost(@PathVariable int id){ //http://localhost:8080/blog/deletePost/{id}
+        //PathVariable annotation is used to extract the value of a URI template variable.
+        blogRepository.deleteById(id);
+        return "Blog deleted successfully!";
+    }
 
 }
