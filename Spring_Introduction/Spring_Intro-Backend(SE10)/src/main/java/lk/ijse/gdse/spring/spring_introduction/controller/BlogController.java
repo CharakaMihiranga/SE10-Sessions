@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController // This annotation is used to create a RESTful web service.
 @RequestMapping("/blog") // http://localhost:8080/blog , this annotation is used to map web requests onto
 // specific handler classes and/or handler methods.
+@CrossOrigin // This annotation is used to handle the request from a different origin.
 public class BlogController {
 
     @Autowired // This annotation is used to auto wire bean on the setter method.
