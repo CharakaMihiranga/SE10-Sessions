@@ -26,12 +26,12 @@ function userRegistration() {
     // error handling
     success: function(response) {
       console.log(response);
+      localStorage.setItem('token', response.data.token)
       clearFields();
-      alert('User registered successfully');
     },
     error: function(error) {
       console.log(error);
-      alert('Error registering user');
+      alert(error.responseJSON.message);
     }
   });
 
@@ -41,4 +41,39 @@ function clearFields() {
   $('#name').val('');
   $('#email').val('');
   $('#password').val('');
+}
+
+function userLogin() {
+  event.preventDefault();
+
+  //define variables
+  var email = $('#email').val();
+  var password = $('#password').val();
+
+  console.log({
+    email: email,
+    password: password
+  });
+
+  //create ajax request
+  $.ajax({
+    url: 'http://localhost:8080/api/v1/auth/authenticate',
+    method: 'POST',
+    contentType: "application/json",
+    "data":JSON.stringify({
+      email: email,
+      password: password
+    }),
+    // error handling
+    success: function(response) {
+      console.log(response);
+      localStorage.setItem('token', response.data.token)
+      clearFields();
+      window.location.href = 'dashboard.html';
+    },
+    error: function(error) {
+      console.log(error);
+      alert(error.responseJSON.message);
+    }
+  });
 }
