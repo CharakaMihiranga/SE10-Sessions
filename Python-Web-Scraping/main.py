@@ -51,8 +51,8 @@ def scrapeMultipleData(content):
 
 if (response.status_code == 200):
     print('Page fetched successfully')
-    # print(response.text)
-    # scrapeData(response.content)
+    print(response.text)
+    scrapeData(response.content)
     scrapeMultipleData(response.content)
 else:
     print("Failed to fetch the page")
