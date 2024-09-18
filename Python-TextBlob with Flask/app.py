@@ -17,11 +17,11 @@ def analyzereview():
     sentiment = blob.sentiment.polarity
 
     if sentiment > 0:
-        result = "Positive Review✅🎉"
+        result = "Positive Review✅"
     elif sentiment < 0:
-        result = "Negative Review🫤"
+        result = "Negative Review☹️"
     elif sentiment == 0:
-        result = "Neutral Review👍"
+        result = "Neutral Review😐"
 
     return jsonify({'sentiment': result})
 
