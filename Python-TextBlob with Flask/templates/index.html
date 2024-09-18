@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Sentiment Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .review-form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        .review-form h2 {
+            text-align: center;
+        }
+
+        .review-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            resize: vertical;
+            margin-bottom: 15px;
+        }
+
+        .review-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .review-form button:hover {
+            background-color: #218838;
+        }
+
+        .result {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="review-form">
+    <h2>Review Sentiment Analysis</h2>
+    <form id="review-form">
+        <textarea name="review" id="review" rows="5" placeholder="" required></textarea><br>
+        <button type="submit">Submit Review</button>
+    </form>
+    <div class="result" id="result">
+    </div>
+</div>
+
+<script src="/static/js/script.js"></script>
+
+</body>
+</html>
