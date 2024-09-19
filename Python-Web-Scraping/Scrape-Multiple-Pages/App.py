@@ -26,8 +26,8 @@ def ScrapeLandDetails(content):
     land_cards = soup.find_all('div', class_='result-item')
 
     if not land_cards:
-        # If no land cards are found, return False to stop scraping
-        return False
+        # If no land cards are found, return an empty list to indicate no more data
+        return []
 
     for card in land_cards:
         # Extract title
@@ -59,13 +59,15 @@ def ScrapeLandDetails(content):
             'total_price': total_price
         })
 
-    # Write the extracted data to the CSV file
-    writeDataIntoCSV(land_items)
-    return True
+    return land_items
 
 
 # URL for the page to scrape
 base_url = 'https://www.patpat.lk/property?page={}'
+
+
+# List to hold all scraped land items
+all_land_items = []
 
 # Start scraping from page 1 and continue until no more listings are found
 page_no = 1
@@ -75,12 +77,23 @@ while True:
 
     if response.status_code == 200:
         print(f'Page {page_no} fetched successfully')
-        if not ScrapeLandDetails(response.content):
+        land_items = ScrapeLandDetails(response.content)
+
+        if not land_items:
             print(f"No more listings found on page {page_no}. Stopping the scraper.")
             break
+
+        # Append the current page's land items to the master list
+        all_land_items.extend(land_items)
+
         page_no += 1
     else:
         print(f"Failed to fetch page {page_no}")
         break
 
-print("Scraping complete.")
+# Once all pages are scraped, write the data to CSV
+if all_land_items:
+    writeDataIntoCSV(all_land_items)
+    print(f"Scraping complete. {len(all_land_items)} land items written to CSV.")
+else:
+    print("No data to write to CSV.")
